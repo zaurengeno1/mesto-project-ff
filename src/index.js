@@ -10,6 +10,7 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const addCardButton = document.querySelector('.profile__add-button');
 const editProfileButton = document.querySelector('.profile__edit-button');
 
+const popups = document.querySelectorAll('.popup');
 const popupCard = document.querySelector('#popup-card');
 const formCard = popupCard.querySelector('#form-card');
 const formInputCardTitle = formCard.querySelector('.form__input-card-title');
@@ -54,14 +55,17 @@ function addCard(cardItems, currentCard) {
   return cardItems.prepend(createCard(currentCard));
 }
 
-function setEventListeners() {
-  document.querySelectorAll('.popup__button-close').forEach((buttonElement) => {
-    const popupElement = buttonElement.closest('.popup');
-    buttonElement.addEventListener('click', () => {
-      closePopup(popupElement);
-    });
-  });
-}
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_open')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__button-close')) {
+          closePopup(popup)
+        }
+    })
+})
+
 formEdit.addEventListener('submit', handleProfileSubmit);
 formCard.addEventListener('submit', handleAddCardSubmit);
 addCardButton.addEventListener('click', handleNewCard);
@@ -69,4 +73,3 @@ editProfileButton.addEventListener('click', handleEditButton);
 
 initialCards.forEach((card) => addCard(cardGrid, card));
 
-setEventListeners();

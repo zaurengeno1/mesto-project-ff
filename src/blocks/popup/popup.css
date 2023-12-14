@@ -15,5 +15,6 @@
   overflow-x: auto;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0.15s, linear, opacity 0.2s;
+  transition: visibility .7s, opacity .7s;
+ 
 }
