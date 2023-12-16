@@ -1,6 +1,6 @@
 import './pages/index.css';
 
-import { initialCards, createCard } from './components/card.js';
+import { initialCards, createCard, handleDeleteButton, handleLikeCard } from './components/card.js';
 import { openPopup, closePopup } from './components/modal.js';
 
 const cardGrid = document.querySelector('.cards-grid');
@@ -20,6 +20,11 @@ const popupEdit = document.querySelector('#popup-edit');
 const formEdit = popupEdit.querySelector('#form-edit');
 const formInputEditTitle = formEdit.querySelector('#edit-name-input');
 const formInputEditSubtitle = formEdit.querySelector('#edit-work-input');
+
+const popupImageOpen = document.querySelector('#popup_image');
+const popupImageFull = popupImageOpen.querySelector('.popup__image-full');
+const popupImageTitle = popupImageOpen.querySelector('.popup__image-title');
+
 
 function handleNewCard () {
   openPopup(popupCard);
@@ -51,8 +56,15 @@ function handleProfileSubmit(evt) {
   closePopup(popupEdit);
 }
 
+function handleImageCard (cardData) {
+  popupImageFull.src = cardData.link;
+  popupImageFull.alt = cardData.name;
+  popupImageTitle.textContent = cardData.name;
+  openPopup(popupImageOpen);
+}
+
 function addCard(cardItems, currentCard) {
-  return cardItems.prepend(createCard(currentCard));
+  return cardItems.prepend(createCard(currentCard,handleImageCard, handleDeleteButton,handleLikeCard ));
 }
 
 popups.forEach((popup) => {
