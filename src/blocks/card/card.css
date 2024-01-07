@@ -2,5 +2,6 @@
   max-width: 282px;
   list-style: none;
   position: relative;
+  overflow: hidden;
   border-radius: 10px;
 }

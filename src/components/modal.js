@@ -1,19 +1,20 @@
-export function openPopup(popupElement) {
+function openPopup(popupElement) {
   popupElement.classList.add('popup_open');
   document.addEventListener('keydown', keyHandlerEsc);
   document.addEventListener('click', keyHandlerOverlay);
 }
 
-export function closePopup(popupElement) {
+function closePopup(popupElement) {
   popupElement.classList.remove('popup_open');
-  document.removeEventListener('keydown', keyHandlerEsc);
+  document.addEventListener('keydown', keyHandlerEsc);
+
   document.removeEventListener('click', keyHandlerOverlay);
 }
 
 function keyHandlerEsc(evt) {
   if (evt.key === 'Escape') {
-    const popupEsc = document.querySelector('.popup_open');
-    closePopup(popupEsc);
+    const popupElement = document.querySelector('.popup_open');
+    closePopup(popupElement);
   }
 }
 
@@ -22,3 +23,5 @@ function keyHandlerOverlay(evt) {
     closePopup(evt.target);
   }
 }
+
+export { openPopup, closePopup };

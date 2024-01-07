@@ -1,9 +1,18 @@
 .card__description {
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-content: space-between;
   min-height: 80px;
   background-color: #fff;
   color: #000;
-	border-radius: 10px;
+	border-radius: 10px; */
+
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 25px 20px;
+  
+  
 }

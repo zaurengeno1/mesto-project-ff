@@ -3,7 +3,8 @@
   min-height: 50px;
   font-size: 18px;
   line-height: 122%;
-  margin: 18px 36px 37px;
+  margin: 18px 0 0;  /* 18px потому, что у меня высота ошибки 30px, 48 - 30 = 18px */
+  padding: 0;
   cursor: pointer;
   background-color: #000;
   color: #fff;
@@ -15,8 +16,8 @@
 
 @media screen and (max-width: 767px) {
   .form__button-save {
+    margin-top: 15px;
     font-size: 14px;
-    margin: 18px 22px 25px;
   }
 }
 
