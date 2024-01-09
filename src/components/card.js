@@ -30,7 +30,6 @@ function createCard(
   if (cardData.owner._id === userId) {
     cardElementDelete.addEventListener('click', (evt) => {
       handleDeleteCard(evt, cardData._id);
-      deleteCard(cardData._id);
     });
   } else {
     cardElementDelete.remove();
@@ -45,6 +44,7 @@ function createCard(
   return cardElement;
 }
 
+//МОЖНО ЛУЧШЕ. потом...
 function handleLikesCard(evt, cardData) {
   const likeNumber = evt.target.parentNode.querySelector(
     '.card__button-like-count'
@@ -70,8 +70,14 @@ function handleLikesCard(evt, cardData) {
   }
 }
 
-function handleDeleteCard(evt) {
-  evt.target.closest('.card').remove();
+function handleDeleteCard(evt, cardData) {
+  deleteCard(cardData)
+    .then(() => {
+      evt.target.closest('.card').remove();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 export { createCard, handleDeleteCard, handleLikesCard };
