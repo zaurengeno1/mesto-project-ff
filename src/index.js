@@ -22,8 +22,8 @@ const cardGrid = document.querySelector('.cards-grid');
 const profileAvatar = document.querySelector('.profile__avatar');
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
-const addCardButton = document.querySelector('.profile__add-button');
-const editProfileButton = document.querySelector('.profile__edit-button');
+const buttonOpenPopupCard = document.querySelector('.profile__add-button');
+const buttonOpenEditProfile = document.querySelector('.profile__edit-button');
 
 const popups = document.querySelectorAll('.popup');
 const popupCard = document.querySelector('#popup-card');
@@ -43,7 +43,7 @@ const popupImageTitle = popupImageOpen.querySelector('.popup__image-title');
 const popupAvatarEdit = document.querySelector('#popup-edit-avatar');
 const formInputAvatarLink = document.querySelector('.form__input-avatar-link');
 const formEditAvatar = document.querySelector('.form-edit-avatar');
-const profileAvatarButton = document.querySelector('.profile__avatar-button');
+const buttonOpenAvatar = document.querySelector('.profile__avatar-button');
 
 const configValidation = {
   formSelector: '.form',
@@ -122,13 +122,13 @@ function handleEditAvatarSubmit(evt) {
 }
 
 Promise.all([getUserCards(), getUserProfile()])
-  .then(([Cards, userData]) => {
+  .then(([cards, userData]) => {
     userId = userData._id;
     profileTitle.textContent = userData.name;
     profileSubtitle.textContent = userData.about;
     profileAvatar.src = userData.avatar;
 
-    Cards.forEach((cardData) => {
+    cards.forEach((cardData) => {
       const newCard = createCard(
         cardData,
         userId,
@@ -175,10 +175,10 @@ popups.forEach((popup) => {
   });
 });
 
-editProfileButton.addEventListener('click', handleOpenProfile);
-profileAvatarButton.addEventListener('click', handleOpenAvatar);
+buttonOpenEditProfile.addEventListener('click', handleOpenProfile);
+buttonOpenAvatar.addEventListener('click', handleOpenAvatar);
 
-addCardButton.addEventListener('click', () => {
+buttonOpenPopupCard.addEventListener('click', () => {
   formCard.reset();
   clearValidation(popupCard, configValidation);
   openPopup(popupCard);
