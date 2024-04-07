@@ -21,15 +21,15 @@ function createCard(
   cardElementImage.alt = cardData.name;
   cardElementName.textContent = cardData.name;
   cardElementLikeCounter.textContent = cardData.likes.length;
-
+  cardElement.id = cardData._id;
   const isLiked = cardData.likes.some((like) => like._id === userId);
   if (isLiked) {
     cardElementLike.classList.add('card__button-like_active');
   }
 
   if (cardData.owner._id === userId) {
-    cardElementDelete.addEventListener('click', (evt) => {
-      handleDeleteCard(evt, cardData._id);
+    cardElementDelete.addEventListener('click', () => {
+      handleDeleteCard(cardData._id);
     });
   } else {
     cardElementDelete.remove();
@@ -70,10 +70,11 @@ function handleLikesCard(evt, cardData) {
   }
 }
 
-function handleDeleteCard(evt, cardData) {
-  deleteCard(cardData)
+function handleDeleteCard(cardElement) {
+  deleteCard()
     .then(() => {
-      evt.target.closest('.card').remove();
+      //evt.target.closest('.card').remove();
+      cardElement.remove();
     })
     .catch((err) => {
       console.log(err);
